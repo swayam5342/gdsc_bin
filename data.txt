@@ -1,5 +1,7 @@
 / 482: int main (int argc, char **argv, char **envp);
 | afv: vars(11:sp[0x10..0xb0])
+gdsc{unp4ck1n6_b1n4r135_15_n4u6h7y}
+
 |           0x00001284      55             push rbp
 |           0x00001285      4889e5         mov rbp, rsp
 |           0x00001288      4881ecb000..   sub rsp, 0xb0
