@@ -1,0 +1,110 @@
+/ 482: int main (int argc, char **argv, char **envp);
+| afv: vars(11:sp[0x10..0xb0])
+|           0x00001284      55             push rbp
+|           0x00001285      4889e5         mov rbp, rsp
+|           0x00001288      4881ecb000..   sub rsp, 0xb0
+|           0x0000128f      64488b0425..   mov rax, qword fs:[0x28]
+|           0x00001298      488945f8       mov qword [canary], rax
+|           0x0000129c      31c0           xor eax, eax
+|           0x0000129e      48c745c000..   mov qword [s], 0
+|           0x000012a6      48c745c800..   mov qword [var_38h], 0
+|           0x000012ae      48c745d000..   mov qword [var_30h], 0
+|           0x000012b6      48c745d800..   mov qword [var_28h], 0
+|           0x000012be      48c745e000..   mov qword [var_20h], 0
+|           0x000012c6      48c745e800..   mov qword [var_18h], 0
+|           0x000012ce      c745ef0000..   mov dword [var_11h], 0
+|           0x000012d5      488d8560ff..   lea rax, [var_a0h]
+|           0x000012dc      ba20000000     mov edx, 0x20               ; "@" ; int64_t arg3
+|           0x000012e1      488d0d580d..   lea rcx, obj.obfuscated_password ; 0x2040 ; "1\xd0A\u01c0\xd4\b+\xe2J\x87\xf1\x9c'\x1f\xd1\r\xdd\xf8\xa2\x10\"\xf0.\xf8\x83\x95-a\xce,\xc34\xc0\n\u047a\x90\x13#\x90\x1a\xd9\xf0\x8bK\f\xc6H\xdc\xf5\x97L`\x91&\x83\xf4\xba\x13g\xd1O\xda\xf6\x9c"
+|           0x000012e8      4889ce         mov rsi, rcx                ; int64_t arg2
+|           0x000012eb      4889c7         mov rdi, rax                ; int64_t arg1
+|           0x000012ee      e896feffff     call sym.deobfuscate
+|           0x000012f3      488d4590       lea rax, [var_70h]
+|           0x000012f7      ba23000000     mov edx, 0x23               ; '#' ; int64_t arg3
+|           0x000012fc      488d0d5d0d..   lea rcx, obj.obfuscated_flag ; 0x2060 ; "4\xc0\n\u047a\x90\x13#\x90\x1a\xd9\xf0\x8bK\f\xc6H\xdc\xf5\x97L`\x91&\x83\xf4\xba\x13g\xd1O\xda\xf6\x9c"
+|           0x00001303      4889ce         mov rsi, rcx                ; int64_t arg2
+|           0x00001306      4889c7         mov rdi, rax                ; int64_t arg1
+|           0x00001309      e87bfeffff     call sym.deobfuscate
+|           0x0000130e      488d056e0d..   lea rax, str.Enter_the_password: ; 0x2083 ; "Enter the password: "
+|           0x00001315      4889c7         mov rdi, rax                ; const char *format
+|           0x00001318      b800000000     mov eax, 0
+|           0x0000131d      e83efdffff     call sym.imp.printf         ; int printf(const char *format)
+|           0x00001322      488b15172d..   mov rdx, qword [obj.stdin]  ; obj.__TMC_END__
+|                                                                      ; [0x4040:8]=0 ; FILE *stream
+|           0x00001329      488d45c0       lea rax, [s]
+|           0x0000132d      be33000000     mov esi, 0x33               ; '3' ; int size
+|           0x00001332      4889c7         mov rdi, rax                ; char *s
+|           0x00001335      e846fdffff     call sym.imp.fgets          ; char *fgets(char *s, int size, FILE *stream)
+|           0x0000133a      4885c0         test rax, rax
+|       ,=< 0x0000133d      7519           jne 0x1358
+|       |   0x0000133f      488d05520d..   lea rax, str.Error_reading_input ; 0x2098 ; "Error reading input"
+|       |   0x00001346      4889c7         mov rdi, rax                ; const char *s
+|       |   0x00001349      e8e2fcffff     call sym.imp.puts           ; int puts(const char *s)
+|       |   0x0000134e      b801000000     mov eax, 1
+|      ,==< 0x00001353      e9f8000000     jmp 0x1450
+|      ||   ; CODE XREF from main @ 0x133d(x)
+|      |`-> 0x00001358      488d45c0       lea rax, [s]
+|      |    0x0000135c      4889c7         mov rdi, rax                ; const char *s
+|      |    0x0000135f      e8dcfcffff     call sym.imp.strlen         ; size_t strlen(const char *s)
+|      |    0x00001364      48898558ff..   mov qword [var_a8h], rax
+|      |    0x0000136b      4883bd58ff..   cmp qword [var_a8h], 0
+|      |,=< 0x00001373      742c           je 0x13a1
+|      ||   0x00001375      488b8558ff..   mov rax, qword [var_a8h]
+|      ||   0x0000137c      4883e801       sub rax, 1
+|      ||   0x00001380      0fb64405c0     movzx eax, byte [rbp + rax - 0x40]
+|      ||   0x00001385      3c0a           cmp al, 0xa
+|     ,===< 0x00001387      7518           jne 0x13a1
+|     |||   0x00001389      488b8558ff..   mov rax, qword [var_a8h]
+|     |||   0x00001390      4883e801       sub rax, 1
+|     |||   0x00001394      c64405c000     mov byte [rbp + rax - 0x40], 0
+|     |||   0x00001399      4883ad58ff..   sub qword [var_a8h], 1
+|     |||   ; CODE XREFS from main @ 0x1373(x), 0x1387(x)
+|     `-`-> 0x000013a1      488d8560ff..   lea rax, [var_a0h]
+|      |    0x000013a8      4889c7         mov rdi, rax                ; const char *s
+|      |    0x000013ab      e890fcffff     call sym.imp.strlen         ; size_t strlen(const char *s)
+|      |    0x000013b0      48398558ff..   cmp qword [var_a8h], rax
+|      |,=< 0x000013b7      753e           jne 0x13f7
+|      ||   0x000013b9      488b9558ff..   mov rdx, qword [var_a8h]    ; int64_t arg3
+|      ||   0x000013c0      488d8d60ff..   lea rcx, [var_a0h]
+|      ||   0x000013c7      488d45c0       lea rax, [s]
+|      ||   0x000013cb      4889ce         mov rsi, rcx                ; int64_t arg2
+|      ||   0x000013ce      4889c7         mov rdi, rax                ; int64_t arg1
+|      ||   0x000013d1      e84dfeffff     call sym.constant_time_compare
+|      ||   0x000013d6      84c0           test al, al
+|     ,===< 0x000013d8      741d           je 0x13f7
+|     |||   0x000013da      488d4590       lea rax, [var_70h]
+|     |||   0x000013de      4889c6         mov rsi, rax
+|     |||   0x000013e1      488d05c80c..   lea rax, str.Correct_password__Here_is_the_flag:__s_n ; 0x20b0 ; "Correct password! Here is the flag: %s\n"
+|     |||   0x000013e8      4889c7         mov rdi, rax                ; const char *format
+|     |||   0x000013eb      b800000000     mov eax, 0
+|     |||   0x000013f0      e86bfcffff     call sym.imp.printf         ; int printf(const char *format)
+|    ,====< 0x000013f5      eb0f           jmp 0x1406
+|    ||||   ; CODE XREFS from main @ 0x13b7(x), 0x13d8(x)
+|    |`-`-> 0x000013f7      488d05da0c..   lea rax, str.Incorrect_password._Please_try_again. ; 0x20d8 ; "Incorrect password. Please try again."
+|    | |    0x000013fe      4889c7         mov rdi, rax                ; const char *s
+|    | |    0x00001401      e82afcffff     call sym.imp.puts           ; int puts(const char *s)
+|    | |    ; CODE XREF from main @ 0x13f5(x)
+|    `----> 0x00001406      488d45c0       lea rax, [s]
+|      |    0x0000140a      ba33000000     mov edx, 0x33               ; '3' ; size_t n
+|      |    0x0000140f      be00000000     mov esi, 0                  ; int c
+|      |    0x00001414      4889c7         mov rdi, rax                ; void *s
+|      |    0x00001417      e854fcffff     call sym.imp.memset         ; void *memset(void *s, int c, size_t n)
+|      |    0x0000141c      488d8560ff..   lea rax, [var_a0h]
+|      |    0x00001423      ba21000000     mov edx, 0x21               ; '!' ; size_t n
+|      |    0x00001428      be00000000     mov esi, 0                  ; int c
+|      |    0x0000142d      4889c7         mov rdi, rax                ; void *s
+|      |    0x00001430      e83bfcffff     call sym.imp.memset         ; void *memset(void *s, int c, size_t n)
+|      |    0x00001435      488d4590       lea rax, [var_70h]
+|      |    0x00001439      ba24000000     mov edx, 0x24               ; '$' ; size_t n
+|      |    0x0000143e      be00000000     mov esi, 0                  ; int c
+|      |    0x00001443      4889c7         mov rdi, rax                ; void *s
+|      |    0x00001446      e825fcffff     call sym.imp.memset         ; void *memset(void *s, int c, size_t n)
+|      |    0x0000144b      b800000000     mov eax, 0
+|      |    ; CODE XREF from main @ 0x1353(x)
+|      `--> 0x00001450      488b55f8       mov rdx, qword [canary]
+|           0x00001454      64482b1425..   sub rdx, qword fs:[0x28]
+|       ,=< 0x0000145d      7405           je 0x1464
+|       |   0x0000145f      e8ecfbffff     call sym.imp.__stack_chk_fail ; void __stack_chk_fail(void)
+|       |   ; CODE XREF from main @ 0x145d(x)
+|       `-> 0x00001464      c9             leave
+\           0x00001465      c3             ret
