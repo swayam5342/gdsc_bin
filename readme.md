@@ -15,7 +15,7 @@ so that if password is not encrypted we can get that
 strings release
 ```
 
-there is the output that [I got](stringdata.txt) but I did not find the password so i can assumed that it's encrypted.
+there is the output that [I got](resources/stringdata.txt) but I did not find the password so i can assumed that it's encrypted.
 but got a very good lead for future use that the given binary is packed using `UPX`
 
 ```txt
@@ -30,7 +30,7 @@ We can check the binary if it is vulnerable to buffer overflow by providing larg
 python3 -c 'print("A" * 100)' | ./release
 ```
 
-![](bufferoverflow.png)
+![](resources/bufferoverflow.png)
 
 but it did not worked it seams the input function is not vulnerable to buffer or there are other measure to prevent that.
 
@@ -43,40 +43,40 @@ I tried to decompile the binary in **`assembly`** by using **`Radare2`**
 r2 -aa release # to open the binary in r2
 ```
 
-and getting the all the function using `afl` the is the  [data](without_upd.txt) of what i thought is main function seeing the below output
-![](r2_without_upx.png)
+and getting the all the function using `afl` the is the  [data](resources/without_upd.txt) of what i thought is main function seeing the below output
+![](resources/r2_without_upx.png)
 but only using this I was unable to make the required connections to check which function did what to i tried to unpack the binary using `UPX`
 
 ```shell
 upx -d release 
 ```
 
-![](upx_unpacking.png)
+![](resources/upx_unpacking.png)
 
-now if we check the binary using `r2` and get all the present function I get [data](with_upd.txt)
+now if we check the binary using `r2` and get all the present function I get [data](resources/with_upd.txt)
 
-![](r2_with_upx.png)
+![](resources/r2_with_upx.png)
 
 now we can see the names of the where as before it was just the memory location
 
 now I  checked the binary using `iaito` a GUI for `r2`
 
 we get the full call stack of the given binary
-![](gdsc_bin.png)
+![](resources/gdsc_bin.png)
 
 Now if check the main function and search for `password` we get 
 
 ### main function
 
-![Main function](main.mp4)
+![Main function](resources/main.mp4)
 
-![password](r2_find_pass.png)
+![password](resources/r2_find_pass.png)
 
 as we can see the call stack the jump conditions at `0x000013b0 and 0x000013d86which the jmp condition to incorrect password statement
 
-![](r2_unmodified_asm.png)
+![](resources/r2_unmodified_asm.png)
 
-![](iaito_unmodified_asm_graph.png)
+![](resources/iaito_unmodified_asm_graph.png)
 
 Now if we look at `0x000013b0`
 ```asm
@@ -115,7 +115,7 @@ pad @ sys.deobfuscate
 ```
 
 and we have to get the encoded password or flag we can decode both that we can get 
-this is from the out put of the [main function](with_upd.txt)
+this is from the out put of the [main function](resources/with_upd.txt)
 `password ` at `0x000012e1`
 ```password
 "1\xd0A\u01c0\xd4\b+\xe2J\x87\xf1\x9c'\x1f\xd1\r\xdd\xf8\xa2\x10\"\xf0.\xf8\x83\x95a\xce,\xc34\xc0\n\u047a\x90\x13#\x90\x1a\xd9\xf0\x8bK\f\xc6H\xdc\xf5\x97L`\x91&\x83\xf4\xba\x13g\xd1O\xda\xf6\x9c"
@@ -154,10 +154,10 @@ wa nop
 s 0x000013d8
 wa nop
 ```
-![the modified assembly](r2_nop.png)
+![the modified assembly](resources/r2_nop.png)
 
 now if check the flow of program we get
 
-![](iaito_nop.png)
+![](resources/iaito_nop.png)
 
-Now we check the whole program and its control flow we get ![](gdsc_bin2.png)
+Now we check the whole program and its control flow we get ![](resources/gdsc_bin2.png)
