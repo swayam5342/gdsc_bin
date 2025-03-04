@@ -1,6 +1,6 @@
 # Report write up for GDSC Pack and Ship
 
-> [!success]
+> [!NOTE]
 > gdsc{unp4ck1n6_b1n4r135_15_n4u6h7y}
 ## Introduction
 
