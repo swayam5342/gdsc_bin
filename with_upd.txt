@@ -1,4 +1,4 @@
-            ; ICOD XREF from entry0 @ 0x10b4(r)
+; ICOD XREF from entry0 @ 0x10b4(r)
 / 482: int main (int argc, char **argv, char **envp);
 | afv: vars(11:sp[0x10..0xb0])
 |           0x00001284      55             push rbp

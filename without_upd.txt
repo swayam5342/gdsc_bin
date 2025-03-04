@@ -1,4 +1,4 @@
-            ; DATA XREF from fcn.00005472 @ +0x24(r)
+; DATA XREF from fcn.00005472 @ +0x24(r)
 / 482: fcn.00005666 ();
 | afv: vars(11:sp[0x10..0xb0])
 |           0x00005666      55             push rbp
