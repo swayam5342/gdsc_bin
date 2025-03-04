@@ -1,5 +1,7 @@
 # Report write up for GDSC Pack and Ship
 
+> [!success]
+> gdsc{unp4ck1n6_b1n4r135_15_n4u6h7y}
 ## Introduction
 
 In this challenge, we had to bypass a password check in a packed binary to extract the flag.
@@ -66,7 +68,7 @@ Now if check the main function and search for `password` we get
 
 ### main function
 
-![Main function](main.webm)
+![Main function](main.mp4)
 
 ![password](r2_find_pass.png)
 
@@ -152,7 +154,7 @@ wa nop
 s 0x000013d8
 wa nop
 ```
-[the modified assembly](r2_nop.png)
+![the modified assembly](r2_nop.png)
 
 now if check the flow of program we get
 
