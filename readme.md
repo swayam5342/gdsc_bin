@@ -1,7 +1,12 @@
 # Report write up for GDSC Pack and Ship
 
-> [!success]
-> gdsc{unp4ck1n6_b1n4r135_15_n4u6h7y}
+> [!NOTE]
+> `--bash`, `--zsh`, and `--fish` options are only available in fzf 0.48.0 or
+> later. If you have an older version of fzf, or want finer control, you can
+> source individual script files in the [/shell](/shell) directory. The
+> location of the files may vary depending on the package manager you use.
+> Please refer to the package documentation for more information.
+> (e.g. `apt show fzf`)
 ## Introduction
 
 In this challenge, we had to bypass a password check in a packed binary to extract the flag.
