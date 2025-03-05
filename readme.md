@@ -143,8 +143,6 @@ wa jmp 0x13de
 ```
 
 but i got segmentation fault 
-> [!BUG]
-> image
 
 then I tried to overwrite the jump condition at `0x000013b7` and `0x000013d8` to `nop` finally that worked
 
